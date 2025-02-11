@@ -864,7 +864,7 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Keycloak self-provided metrics",
+  "title": "Keycloak capacity planning dashboard",
   "uid": "dtvmgcVNk",
   "version": 1,
   "weekStart": "monday"
