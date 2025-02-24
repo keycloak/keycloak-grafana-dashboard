@@ -399,7 +399,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "sum(\n  irate(\n    http_server_requests_seconds_bucket{\n      uri=~\"/realms/{realm}/protocol/{protocol}/.*|/realms/{realm}/login-actions/.*\", \n      le=\"0.25\", \n      container=\"keycloak\", \n      namespace=\"runner-keycloak\"}\n    [5m] \n  )\n) without (le,uri,status,outcome,method,pod,instance) \n/\nsum(\n  irate(\n    http_server_requests_seconds_count{\n      uri=~\"/realms/{realm}/protocol/{protocol}/.*|/realms/{realm}/login-actions/.*\", \n      container=\"keycloak\",\n      namespace=\"runner-keycloak\"}\n    [5m] \n  )\n) without (le,uri,status,outcome,method,pod,instance)",
+          "expr": "sum(\n  irate(\n    http_server_requests_seconds_bucket{\n      uri=~\"/realms/{realm}/protocol/{protocol}/.*|/realms/{realm}/login-actions/.*\", \n      le=\"0.25\", \n      container=\"keycloak\", \n      namespace=\"$namespace\"}\n    [5m] \n  )\n) without (le,uri,status,outcome,method,pod,instance) \n/\nsum(\n  irate(\n    http_server_requests_seconds_count{\n      uri=~\"/realms/{realm}/protocol/{protocol}/.*|/realms/{realm}/login-actions/.*\", \n      container=\"keycloak\",\n      namespace=\"$namespace\"}\n    [5m] \n  )\n) without (le,uri,status,outcome,method,pod,instance)",
           "hide": false,
           "legendFormat": "All pods",
           "range": true,
