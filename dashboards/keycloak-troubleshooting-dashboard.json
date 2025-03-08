@@ -753,7 +753,7 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "value_and_name"
       },
       "pluginVersion": "9.4.7",
       "targets": [
@@ -763,7 +763,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "sum_over_time((sum by (pod) (jvm_memory_used_bytes))[$__range:$__interval]) / count_over_time((sum by (pod) (jvm_memory_used_bytes))[$__range:$__interval]) ",
+          "expr": "sum_over_time((sum by (pod) (jvm_memory_used_bytes{namespace=\"$namespace\"}))[$__range:$__interval]) / count_over_time((sum by (pod) (jvm_memory_used_bytes{namespace=\"$namespace\"}))[$__range:$__interval]) ",
           "hide": false,
           "legendFormat": "__auto",
           "range": true,
@@ -858,7 +858,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "sum by (pod) (jvm_memory_used_bytes)",
+          "expr": "sum by (pod) (jvm_memory_used_bytes{namespace=\"$namespace\"})",
           "hide": false,
           "legendFormat": "{{pod}} - used",
           "range": true,
@@ -870,7 +870,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "sum by (pod) (jvm_memory_committed_bytes)",
+          "expr": "sum by (pod) (jvm_memory_committed_bytes{namespace=\"$namespace\"})",
           "hide": false,
           "legendFormat": "{{pod}} - committed",
           "range": true,
@@ -1476,7 +1476,7 @@
               "fields": "",
               "values": false
             },
-            "textMode": "auto"
+            "textMode": "value_and_name"
           },
           "pluginVersion": "9.4.7",
           "targets": [
@@ -1486,7 +1486,7 @@
                 "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
-              "expr": "avg by (pod) (sum_over_time(agroal_active_count[$__range:$__interval]) / sum_over_time((agroal_active_count + agroal_available_count)[$__range:$__interval]))",
+              "expr": "avg by (pod) (sum_over_time(agroal_active_count{namespace=\"$namespace\"}[$__range:$__interval]) / sum_over_time((agroal_active_count{namespace=\"$namespace\"} + agroal_available_count{namespace=\"$namespace\"})[$__range:$__interval]))",
               "legendFormat": "__auto",
               "range": true,
               "refId": "A"
