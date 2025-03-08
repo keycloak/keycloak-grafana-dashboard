@@ -386,7 +386,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "exemplar": false,
+          "exemplar": true,
           "expr": "sum(\n  irate(\n    http_server_requests_seconds_bucket{\n      uri=~\"/realms/{realm}/protocol/{protocol}.*|/realms/{realm}/login-actions.*\", \n      le=\"0.25\", \n      container=\"keycloak\", \n      namespace=\"$namespace\"}\n    [5m] \n  )\n) without (le,uri,status,outcome,method,instance) \n/\nsum(\n  irate(\n    http_server_requests_seconds_count{\n      uri=~\"/realms/{realm}/protocol/{protocol}.*|/realms/{realm}/login-actions.*\", \n      container=\"keycloak\",\n      namespace=\"$namespace\"}\n    [5m] \n  )\n) without (le,uri,status,outcome,method,instance)",
           "instant": false,
           "legendFormat": "{{pod}}",
@@ -590,7 +590,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "exemplar": false,
+          "exemplar": true,
           "expr": "max(jvm_info_total{namespace=\"$namespace\"}) by (pod, vendor, runtime, version)",
           "format": "table",
           "instant": true,
@@ -1407,7 +1407,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "exemplar": false,
+          "exemplar": true,
           "expr": "sum by (pod)(jvm_threads_states_threads{namespace=\"$namespace\", container=\"keycloak\", state=\"waiting\"})",
           "format": "time_series",
           "hide": false,
@@ -2062,7 +2062,7 @@
                 "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
-              "exemplar": false,
+              "exemplar": true,
               "expr": "sum by (le) (idelta(http_server_requests_seconds_bucket{container=\"keycloak\", namespace=\"$namespace\"} [5m]))",
               "format": "heatmap",
               "legendFormat": "{{le}}",
