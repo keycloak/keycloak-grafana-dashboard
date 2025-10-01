@@ -1869,7 +1869,7 @@
                 "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
-              "expr": "agroal_available_count{job=\"${namespace}/keycloak-metrics\",namespace=\"${namespace}\"}",
+              "expr": "agroal_available_count{job=~\"${namespace}/keycloak-metrics|keycloak-service\",namespace=\"${namespace}\"}",
               "legendFormat": "{{pod}} - available connections",
               "range": true,
               "refId": "A"
@@ -1880,7 +1880,7 @@
                 "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
-              "expr": "agroal_active_count{job=\"${namespace}/keycloak-metrics\",namespace=\"${namespace}\"}",
+              "expr": "agroal_active_count{job=~\"${namespace}/keycloak-metrics|keycloak-service\",namespace=\"${namespace}\"}",
               "hide": false,
               "legendFormat": "{{pod}} - used connections",
               "range": true,
