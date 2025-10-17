@@ -15,7 +15,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "9.4.7"
+      "version": "12.2.0"
     },
     {
       "type": "datasource",
@@ -55,9 +55,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": null,
   "links": [],
-  "liveNow": false,
   "panels": [
     {
       "datasource": {
@@ -71,11 +69,13 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 14,
             "gradientMode": "none",
@@ -84,6 +84,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 2,
             "pointSize": 5,
@@ -91,6 +92,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -106,7 +108,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -132,10 +134,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": {
@@ -163,11 +167,13 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 14,
             "gradientMode": "none",
@@ -176,6 +182,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 2,
             "pointSize": 5,
@@ -183,6 +190,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -198,7 +206,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -225,11 +233,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": {
@@ -237,7 +246,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "irate(keycloak_user_events_total{event=\"code_to_token\", namespace=\"$namespace\", realm=\"$realm\", error!=\"\"}[$__rate_interval])",
+          "expr": "sum by(pod) (irate(keycloak_user_events_total{event=\"code_to_token\", namespace=\"$namespace\", realm=\"$realm\", error!=\"\"}[$__rate_interval]))",
           "intervalFactor": 1,
           "legendFormat": "{{pod}}:{{error}}",
           "range": true,
@@ -249,7 +258,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "irate(keycloak_user_events_total{event=\"code_to_token\", namespace=\"$namespace\", realm=\"$realm\"}[$__rate_interval])",
+          "expr": "sum by(pod) (irate(keycloak_user_events_total{event=\"code_to_token\", namespace=\"$namespace\", realm=\"$realm\"}[$__rate_interval]))",
           "hide": false,
           "intervalFactor": 1,
           "legendFormat": "{{pod}}",
@@ -271,11 +280,13 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 14,
             "gradientMode": "none",
@@ -284,6 +295,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 2,
             "pointSize": 5,
@@ -291,6 +303,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -306,7 +319,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -333,11 +346,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": {
@@ -345,7 +359,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "irate(keycloak_user_events_total{event=\"client_login\", namespace=\"$namespace\", realm=\"$realm\"}[$__rate_interval])",
+          "expr": "sum by(pod) (irate(keycloak_user_events_total{event=\"client_login\", namespace=\"$namespace\", realm=\"$realm\"}[$__rate_interval]))",
           "intervalFactor": 1,
           "legendFormat": "{{pod}}",
           "range": true,
@@ -357,7 +371,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "irate(keycloak_user_events_total{event=\"client_login\", namespace=\"$namespace\", realm=\"$realm\", error!=\"\"}[$__rate_interval])",
+          "expr": "sum by(pod) (irate(keycloak_user_events_total{event=\"client_login\", namespace=\"$namespace\", realm=\"$realm\", error!=\"\"}[$__rate_interval]))",
           "hide": false,
           "intervalFactor": 1,
           "legendFormat": "{{pod}}:{{error}}",
@@ -379,11 +393,13 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 14,
             "gradientMode": "none",
@@ -392,6 +408,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 2,
             "pointSize": 5,
@@ -399,6 +416,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -414,7 +432,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -441,11 +459,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": {
@@ -453,7 +472,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "irate(keycloak_user_events_total{event=\"refresh_token\", namespace=\"$namespace\", realm=\"$realm\", error!=\"\"}[$__rate_interval])",
+          "expr": "sum by(pod) (irate(keycloak_user_events_total{event=\"refresh_token\", namespace=\"$namespace\", realm=\"$realm\", error!=\"\"}[$__rate_interval]))",
           "intervalFactor": 1,
           "legendFormat": "{{pod}}:{{error}}",
           "range": true,
@@ -465,7 +484,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "irate(keycloak_user_events_total{event=\"refresh_token\", namespace=\"$namespace\", realm=\"$realm\"}[$__rate_interval])",
+          "expr": "sum by(pod) (irate(keycloak_user_events_total{event=\"refresh_token\", namespace=\"$namespace\", realm=\"$realm\"}[$__rate_interval]))",
           "hide": false,
           "intervalFactor": 1,
           "legendFormat": "{{pod}}",
@@ -487,11 +506,13 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 14,
             "gradientMode": "none",
@@ -500,6 +521,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 2,
             "pointSize": 5,
@@ -507,6 +529,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -522,7 +545,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -549,11 +572,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": {
@@ -561,7 +585,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "irate(keycloak_user_events_total{event=\"login\", namespace=\"$namespace\", realm=\"$realm\"}[$__rate_interval])",
+          "expr": "sum by(pod) (irate(keycloak_user_events_total{event=\"login\", namespace=\"$namespace\", realm=\"$realm\"}[$__rate_interval]))",
           "hide": false,
           "intervalFactor": 1,
           "legendFormat": "{{pod}}",
@@ -574,7 +598,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "irate(keycloak_user_events_total{event=\"login\", namespace=\"$namespace\", realm=\"$realm\", error!=\"\"}[$__rate_interval])",
+          "expr": "sum by(pod) (irate(keycloak_user_events_total{event=\"login\", namespace=\"$namespace\", realm=\"$realm\", error!=\"\"}[$__rate_interval]))",
           "hide": false,
           "intervalFactor": 1,
           "legendFormat": "{{pod}}:{{error}}",
@@ -596,11 +620,13 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 14,
             "gradientMode": "none",
@@ -609,6 +635,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 2,
             "pointSize": 5,
@@ -616,6 +643,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -631,7 +659,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -658,11 +686,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": {
@@ -670,7 +699,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "irate(keycloak_user_events_total{event=\"logout\", namespace=\"$namespace\", realm=\"$realm\"}[$__rate_interval])",
+          "expr": "sum by(pod) (irate(keycloak_user_events_total{event=\"logout\", namespace=\"$namespace\", realm=\"$realm\"}[$__rate_interval]))",
           "intervalFactor": 1,
           "legendFormat": "{{pod}}",
           "range": true,
@@ -682,7 +711,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "irate(keycloak_user_events_total{event=\"logout\", namespace=\"$namespace\", realm=\"$realm\", error!=\"\"}[$__rate_interval])",
+          "expr": "sum by(pod) (irate(keycloak_user_events_total{event=\"logout\", namespace=\"$namespace\", realm=\"$realm\", error!=\"\"}[$__rate_interval]))",
           "hide": false,
           "intervalFactor": 1,
           "legendFormat": "{{pod}}:{{error}}",
@@ -704,11 +733,13 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 14,
             "gradientMode": "none",
@@ -717,6 +748,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 2,
             "pointSize": 5,
@@ -724,6 +756,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -739,7 +772,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -766,11 +799,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "9.4.7",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": {
@@ -778,7 +812,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "irate(keycloak_user_events_total{event=\"token_exchange\", namespace=\"$namespace\", realm=\"$realm\"}[$__rate_interval])",
+          "expr": "sum by(pod) (irate(keycloak_user_events_total{event=\"token_exchange\", namespace=\"$namespace\", realm=\"$realm\"}[$__rate_interval]))",
           "hide": false,
           "intervalFactor": 1,
           "legendFormat": "{{pod}}",
@@ -791,7 +825,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "irate(keycloak_user_events_total{event=\"token_exchange\", namespace=\"$namespace\", realm=\"$realm\", error!=\"\"}[$__rate_interval])",
+          "expr": "sum by(pod) (irate(keycloak_user_events_total{event=\"token_exchange\", namespace=\"$namespace\", realm=\"$realm\", error!=\"\"}[$__rate_interval]))",
           "hide": false,
           "intervalFactor": 1,
           "legendFormat": "{{pod}}:{{error}}",
@@ -804,9 +838,7 @@
     }
   ],
   "refresh": "",
-  "revision": 1,
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 42,
   "tags": [],
   "templating": {
     "list": [
@@ -817,10 +849,8 @@
           "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(namespace)",
-        "hide": 0,
         "includeAll": false,
         "label": "namespace",
-        "multi": false,
         "name": "namespace",
         "options": [],
         "query": {
@@ -829,8 +859,6 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
@@ -840,10 +868,8 @@
           "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(realm)",
-        "hide": 0,
         "includeAll": false,
         "label": "realm",
-        "multi": false,
         "name": "realm",
         "options": [],
         "query": {
@@ -852,8 +878,6 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       }
     ]
@@ -866,6 +890,7 @@
   "timezone": "browser",
   "title": "Keycloak capacity planning dashboard",
   "uid": "dtvmgcVNk",
-  "version": 1,
-  "weekStart": "monday"
+  "version": 2,
+  "weekStart": "monday",
+  "id": null
 }
