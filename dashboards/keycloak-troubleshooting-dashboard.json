@@ -714,7 +714,7 @@
                 "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
-              "expr": "sum(rate(container_cpu_usage_seconds_total{container=\"keycloak\", namespace=\"$namespace\"}[5m])) by (pod) /\nsum(container_spec_cpu_quota{container=\"keycloak\", namespace=\"$namespace\"}/container_spec_cpu_period{container=\"keycloak\", namespace=\"$namespace\"}) by (pod)",
+              "expr": "sum(rate(container_cpu_usage_seconds_total{container=\"keycloak\", namespace=\"$namespace\"}[5m])) by (pod)\n/\non(pod) group_left\nsum(kube_pod_container_resource_limits{container=\"keycloak\", namespace=\"$namespace\", resource=\"cpu\"}) by (pod)",
               "hide": false,
               "legendFormat": "__auto",
               "range": true,
